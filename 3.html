@@ -13,38 +13,54 @@
 
     <div class="container">
         <div class="row">
-          <div class="col-8">
-            <table class="table table-hover">
-                <thead class="thead-dark">
-                    <tr>
-                        <th>Название</th>
-                        <th>Рейтинг</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-title="Унесённые призраками" data-rating="8.4" data-year="2001" data-director="Хаяо Миядзаки"  data-image="..." onclick="onRowClick(this)">
-                        <td>Унесённые призраками</td>
-                        <td>8.4</td>
-                    </tr>
-                    <tr data-title="Малхолланд Драйв" data-rating="7.6" data-year="2002" data-director="Дэвид Линч" data-image="..." onclick="onRowClick(this)">
-                        <td>Малхолланд Драйв</td>
-                        <td>7.6</td>
-                    </tr>
-                    <tr  data-title="Мертвец" data-rating="7.8" data-year="1995" data-director="Джим Джармуш" data-image="..." onclick="onRowClick(this)">
-                        <td>Мертвец</td>
-                        <td>7.8</td>
-                    </tr>
-                </tbody>
-            </table>
-          </div>
-          <div class="col-4">
-            <div class="shadow p-2 text-center">
-                <span id="title">Название</span>
+            <div class="col-8">
+                <table class="table table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Название</th>
+                            <th>Рейтинг</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-title="Унесённые призраками" data-rating="8.4" data-year="2001" data-director="Хаяо Миядзаки"  data-image="https://avatars.mds.yandex.net/get-kinopoisk-image/1629390/64becb5d-e7b9-4a56-8c71-5008294a854a/300x450" onclick="onRowClick(this)">
+                            <td>Унесённые призраками</td>
+                            <td>8.4</td>
+                        </tr>
+                        <tr data-title="Малхолланд Драйв" data-rating="7.6" data-year="2002" data-director="Дэвид Линч" data-image="https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/477bd555-16ee-47aa-be90-6a252c189414/300x450" onclick="onRowClick(this)">
+                            <td>Малхолланд Драйв</td>
+                            <td>7.6</td>
+                        </tr>
+                        <tr  data-title="Мертвец" data-rating="7.8" data-year="1995" data-director="Джим Джармуш" data-image="https://avatars.mds.yandex.net/get-kinopoisk-image/1773646/707e78dc-43a0-4309-88f0-dee4ce7a4e57/300x450" onclick="onRowClick(this)">
+                            <td>Мертвец</td>
+                            <td>7.8</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-          </div>
+            <div class="col-4">
+                <div class="shadow p-2 text-center">
+                    <h3 id="title">Название</h3>
+                    <img id="image" src="" alt="">
+                    <table class="table table-hover text-left">
+                        <tbody>
+                            <tr>
+                                <td><strong>Режиссер</strong></td>
+                                <td id="director"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Год выпуска</strong></td>
+                                <td id="year"></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Рейтинг</strong></td>
+                                <td id="rating"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    
       
     <style>
         .table tr td:hover {
@@ -55,13 +71,16 @@
     <script>
         let previousRow = null;
         function onRowClick(row) {  
-            let title = document.getElementById("title")
-            title.innerText = row.dataset.title;
-            if (previousRow) { // если предыдущая строка не пустая
-                previousRow.classList.remove("table-info") // то удаляем у нее класс
+            document.getElementById("title").innerText = row.dataset.title;
+            document.getElementById("image").src = row.dataset.image;
+            document.getElementById("director").innerText = row.dataset.director;
+            document.getElementById("year").innerText = row.dataset.year;
+            document.getElementById("rating").innerText = row.dataset.rating;
+            if (previousRow) {
+                previousRow.classList.remove("table-info")
             }
             row.classList.add("table-info");
-            previousRow = row; // меняем предыдущую строку на текущую
+            previousRow = row;
         }
     </script>
     
